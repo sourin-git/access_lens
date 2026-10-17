@@ -1,6 +1,6 @@
 # AccessLens scene
 
-The repository was empty when this scene was added. No `src/main.ts` or shared global stylesheet was created or modified. `src/types.ts` is the shared contract for `AccessibilityProfile` and `AppState`; the scene does not own an app state store.
+The repository was empty when this scene was added in `3f243ce`. The main application now integrates it through `src/main.ts` and `src/styles.css`; the scene and its independent harness remain intact. `src/types.ts` is the shared contract for `AccessibilityProfile` and `AppState`; the scene does not own an app state store. See [README.md](README.md) for the complete app.
 
 ## Run the independent page
 
@@ -95,7 +95,7 @@ The scene uses direct Three.js, shared geometry/materials, canvas-generated text
 
 WebGL initialization failure or context loss replaces the canvas with a readable, selectable DOM alternative. It supports the same selection callbacks, profile updates, scan flag, and clearing. Its illustrative scan result is immediate. Disposal removes the fallback and its listeners and restores the canvas display style. Context loss remains in fallback until remounting; the browser must restore a genuinely lost context before WebGL can be mounted again. One active instance per canvas is supported.
 
-The initially empty repository needed these setup dependencies: runtime `three@0.186.1`; development `@types/three@0.186.0`, `typescript@5.9.3`, `vite@8.3.2`, and browser-test-only `playwright@1.63.0`. No additional dependencies were added for this handoff. Existing standalone Vite configuration builds `scene-test.html`; the UI teammate must add their app entry alongside it when integrating, preserving the independent harness. No setup file was overwritten in this handoff.
+The initially empty repository needed these setup dependencies: runtime `three@0.186.1`; development `@types/three@0.186.0`, `typescript@5.9.3`, `vite@8.3.2`, and browser-test-only `playwright@1.63.0`. The complete app adds no dependencies. Vite builds both `index.html` and `scene-test.html`, sharing the original scene chunk and preserving the independent harness.
 
 ## Validation
 
@@ -110,4 +110,4 @@ The browser test starts its own local Vite server on port 5175, closes it after 
 
 All **18 browser checks** pass in headless Chromium with software WebGL: transparent rendering, all five profiles, all five raycast selections, keyboard selection/clearing, no queued frames under reduced motion, static and animated scans, detected markers, container-only resizing without explicit resize (including raycasting after resizing), explicit resize, repeated disposal/remounting, forced fallback, fallback state/keyboard selection/cleanup, OS reduced-motion initialization and all profile changes, live OS preference changes, and real WebGL context loss. A public-API regression test covers 240 setter-order permutations across all five profiles in WebGL and fallback, visual selection clearing, scan resetting, unknown IDs, callback silence for programmatic setters, repeated disposal, post-disposal calls, and canvas reuse. Remounts and pixel-readback assertions also check `gl.getError()`; disposal is checked for restored texture-unpack state. TypeScript strict checks and the production build pass. No page or shader errors were reported. Native driver diagnostics from the test's pixel-readback assertions are kept in the ignored artifact directory.
 
-Limitations: rendering has not been checked on physical GPU hardware, Safari, or Firefox. The production scene bundle is about 553 kB (140 kB gzip), which triggers Vite's default 500 kB chunk warning. This standalone build deliberately includes Three.js in one entry; a host app may lazy-load the scene. No analysis service, reports, navigation, or app-wide controls are implemented in this module.
+Limitations: rendering has not been checked on physical GPU hardware, Safari, or Firefox. The scene chunk is about 550 kB (139 kB gzip), which triggers Vite's default 500 kB chunk warning. The main app lazy-loads it with a loading state. The scene module does not implement an analysis service or app-wide controls; the UI report is predefined illustrative data. Its report timer remains independent of the scene's visual scan, as there is no scene completion callback.

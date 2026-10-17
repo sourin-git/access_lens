@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070c19" />
+    <meta name="description" content="Explore an illustrative website through five accessibility perspectives in an interactive 3D demo." />
+    <title>AccessLens — A different perspective</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230c1630'/%3E%3Cpath d='M6 20 16 5l10 15-10 7Z' fill='none' stroke='%23d5ff54' stroke-width='3'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to explorer</a>
+    <div id="app" class="app">
+      <header class="site-header">
+        <a class="brand" href="#main-content" aria-label="AccessLens explorer"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M5 23 18 4l13 19-13 9Z"/><path d="m11 23 7-11 7 11-7 5Z"/></svg><span>Access<span class="brand-accent">Lens</span></span></a>
+        <div class="header-links"><span class="demo-tag"><span></span> Interactive demo</span><a href="#about">About this demo <span aria-hidden="true">↗</span></a></div>
+      </header>
+
+      <main id="main-content" tabindex="-1">
+        <section class="intro" aria-labelledby="page-title">
+          <div><p class="eyebrow"><span aria-hidden="true">✳</span> A NEW PERSPECTIVE ON ACCESSIBILITY</p><h1 id="page-title">Different lenses.<br /><span>More possibilities.</span></h1><p class="intro-copy">Experience how design choices can change the web for someone else. Explore a website in 3D, switch perspectives, and discover ways to make it more inclusive.</p></div>
+          <div class="intro-note"><span class="note-number" aria-hidden="true">05<span>↗</span></span><p>perspectives.<br />One more inclusive web.</p><span class="note-caption">A guided experience, not a website audit.</span></div>
+        </section>
+
+        <div class="workspace-heading"><div><p class="eyebrow">YOUR EXPLORATION SPACE</p><h2>Look closer. See more.</h2></div><div class="scan-actions"><button id="reset-demo" class="button button-secondary" type="button" disabled>Reset demo</button><button id="scan-button" class="button button-primary" type="button" disabled><span id="scan-button-label">Loading explorer…</span><span aria-hidden="true">↗</span></button></div></div>
+
+        <div class="workspace">
+          <div class="explorer-column">
+            <section class="viewport-panel glass" aria-label="Interactive website explorer">
+              <div class="viewport-toolbar"><span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="demo-address"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="6" width="10" height="8" rx="2"/><path d="M5 6V4a3 3 0 0 1 6 0v2"/></svg>accesslens / example website</span><span id="viewport-mode" class="viewport-mode">LOADING</span></div>
+              <div class="scene-stage">
+                <div id="scene-host" class="scene-host" aria-busy="true"><canvas id="access-lens-canvas" role="img" aria-label="Interactive 3D demo website. Equivalent keyboard selection is available in the element report." aria-describedby="scene-instructions"></canvas></div>
+                <div id="scene-loading" class="scene-loading"><span class="loading-orbit" aria-hidden="true"></span><p id="loading-label">Preparing your perspective…</p></div>
+                <div class="scene-caption" aria-hidden="true"><span class="coordinate">01 / SPATIAL EXPLORER</span><span>PROCEDURAL DEMO WEBSITE</span></div>
+              </div>
+              <div class="viewport-footer"><p id="scene-instructions"><span aria-hidden="true">⌖</span> Select a website panel or use the element report.</p><span id="selected-name">No element selected</span><button id="retry-scene" class="text-button" type="button" hidden>Retry 3D view</button></div>
+            </section>
+
+            <section class="preferences glass" aria-labelledby="preferences-heading">
+              <div class="section-title"><div><p class="eyebrow">CHANGE YOUR PERSPECTIVE</p><h2 id="preferences-heading">Find a different lens</h2></div><button id="reset-preferences" class="text-button" type="button">Reset preferences</button></div>
+              <div class="preferences-grid"><div class="profile-field"><label for="profile-select">Accessibility profile</label><select id="profile-select" aria-describedby="profile-description"><option value="default">Default perspective</option><option value="low-vision">Low vision</option><option value="dyslexia">Dyslexia</option><option value="motor">Motor accessibility</option><option value="reduced-motion">Reduced motion</option></select><p id="profile-description" class="field-description"></p></div>
+              <div class="adjustments"><label class="switch-label" for="contrast-toggle"><span><strong>High contrast</strong><small>Clearer UI boundaries &amp; text</small></span><input id="contrast-toggle" type="checkbox" role="switch" /></label><label class="switch-label" for="motion-toggle"><span><strong>Reduce motion</strong><small>Keep the scene still</small></span><input id="motion-toggle" type="checkbox" role="switch" /></label></div></div>
+              <div class="text-scale-field"><label for="text-scale">Text size <output id="text-scale-value" for="text-scale">100%</output></label><span class="scale-small" aria-hidden="true">A</span><input id="text-scale" type="range" min="100" max="150" step="10" value="100" /><span class="scale-large" aria-hidden="true">A</span></div>
+              <p id="motion-note" class="motion-note"></p>
+            </section>
+          </div>
+
+          <aside class="report glass" aria-labelledby="report-heading">
+            <div class="report-title"><div class="report-icon" aria-hidden="true">⌁</div><div><p class="eyebrow">ILLUSTRATIVE FINDINGS</p><h2 id="report-heading">Element report</h2></div><span class="count-tag">05</span></div>
+            <div id="scan-status-card" class="scan-status-card" data-phase="idle"><div class="status-title"><span id="status-dot" class="status-dot" aria-hidden="true"></span><h3 id="scan-status-heading">Ready to explore</h3><span id="scan-percent" hidden></span></div><p id="scan-status-description">Run the demo scan to reveal three example findings. You can select any element now.</p><progress id="scan-progress" max="100" value="0" aria-label="Demo scan progress" hidden></progress></div>
+            <div id="findings-summary" class="findings-summary" hidden><span><i class="severity-dot high"></i>2 high</span><span><i class="severity-dot moderate"></i>1 moderate</span><span>2 review notes</span></div>
+            <div class="report-list-heading"><h3>Website elements</h3><button id="clear-selection" class="text-button" type="button" disabled>Clear selection</button></div>
+            <ol id="report-items" class="report-items" aria-label="Select a website element"></ol>
+            <section id="element-detail" class="element-detail" aria-labelledby="detail-heading"><p class="eyebrow">A CLOSER LOOK</p><h3 id="detail-heading">Every element matters.</h3><p id="detail-description">Choose an element to see its role in the experience. Run a demo scan for illustrative improvements.</p><div id="detail-improvement" hidden><h4>Suggested improvement</h4><p id="detail-suggestion"></p></div></section>
+            <p class="report-disclaimer"><span aria-hidden="true">ⓘ</span> Demo findings are predefined examples. No real website has been tested or audited.</p>
+          </aside>
+        </div>
+
+        <section id="about" class="about" aria-labelledby="about-heading"><div><p class="eyebrow">DESIGN WITH PEOPLE IN MIND</p><h2 id="about-heading">Accessibility starts with perspective.</h2></div><p>AccessLens is a learning experience built around a procedural example website. These visual adaptations are illustrative, and individual needs vary. Use them as a starting point for thoughtful design and conversations with the people who use your product.</p></section>
+      </main>
+      <footer class="site-footer"><span>AccessLens <span aria-hidden="true">/</span> Built for a more inclusive web.</span><a href="/scene-test.html">Independent scene laboratory <span aria-hidden="true">↗</span></a><span>Explore. Understand. Include.</span></footer>
+      <p id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    </div>
+    <noscript><p style="padding:24px;color:#fff;background:#101b32">AccessLens needs JavaScript for its interactive demo. Enable JavaScript to use the accessible controls and element report.</p></noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
