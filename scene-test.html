@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AccessLens · Scene laboratory</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <main id="scene-test">
+      <header><p class="eyebrow">ACCESSLENS / SCENE LABORATORY</p><h1>A different point of view.</h1><p>Explore a procedural website through five accessibility perspectives.</p></header>
+      <section class="controls" aria-label="Scene test controls">
+        <label>Accessibility profile <select id="profile"><option value="default">Default</option><option value="low-vision">Low vision</option><option value="dyslexia">Dyslexia</option><option value="motor">Motor</option><option value="reduced-motion">Reduced motion</option></select></label>
+        <label><input id="scan" type="checkbox" /> Illustrative scan</label>
+        <label><input id="narrow" type="checkbox" /> Narrow viewport</label>
+        <label><input id="fallback" type="checkbox" /> Force DOM fallback (remounts)</label>
+        <button id="resize" type="button">Resize scene</button>
+        <button id="dispose" type="button">Dispose</button>
+        <button id="remount" type="button">Remount</button>
+      </section>
+      <p id="profile-description"></p>
+      <div id="stage"><canvas id="scene" role="img" aria-label="Interactive 3D website preview. Equivalent element selection buttons follow the preview."></canvas><p id="unmounted" hidden>Scene disposed. Choose Remount to start again.</p><span class="stage-label" aria-hidden="true">WEBSITE / SPATIAL VIEW</span></div>
+      <section class="selection" aria-label="Keyboard equivalent element selection">
+        <p>Select a website element using a button or click its panel in the scene.</p>
+        <div id="element-controls"></div>
+        <button id="clear" type="button">Clear selection</button>
+        <p id="selected" role="status" aria-live="polite">Selected element: none</p>
+      </section>
+      <p id="lifecycle" role="status"></p>
+      <footer>Scene data is illustrative. Issue diamonds do not represent real accessibility analysis. The animated scan takes four seconds; reduced motion shows a static result immediately. The operating system’s motion preference always takes precedence.</footer>
+    </main>
+    <script type="module" src="/src/scene-test.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.scene-test-artifacts/
+.npm-cache/
